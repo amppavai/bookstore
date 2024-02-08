@@ -18,8 +18,8 @@ public class BookstoreController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String getBooks(Model model) {
         List<Book> books = new ArrayList<>();
-        books.add(new Book("Kirja 1", "Ernest Hemingway", 1929, "vc5y45uv236", 10));
-        books.add(new Book("Kirja 2", "George Orwell", 1945, "72cb64i7", 15));
+        books.add(new Book(0, "Kirja 1", "Ernest Hemingway", 1929, "vc5y45uv236", 10));
+        books.add(new Book(1, "Kirja 2", "George Orwell", 1945, "72cb64i7", 15));
         model.addAttribute("books", books);
         return "index";
     }
