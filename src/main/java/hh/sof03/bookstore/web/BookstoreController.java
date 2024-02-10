@@ -60,4 +60,12 @@ public class BookstoreController {
         bookRepository.deleteById(id);
         return "redirect:../booklist";
     }
+
+    //kirjan muokkaaminen
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("book", bookRepository.findById(id));
+        return "editbook"; //editbook.html
+    
+    }
 }
