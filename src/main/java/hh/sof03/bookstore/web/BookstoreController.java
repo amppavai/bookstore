@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
+
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class BookstoreController {
@@ -51,12 +52,12 @@ public class BookstoreController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveBook(Book book) {
         bookRepository.save(book);
-        return "redirect:booklist";
+        return "redirect:/booklist";
     }
     //kirjan poistaminen listasta
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteBook(@PathVariable("id")Integer bookId, Model model) {
-        bookRepository.deleteById(bookId);
-        return "redirect:booklist";
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteBook(@PathVariable("id")Integer id, Model model) {
+        bookRepository.deleteById(id);
+        return "redirect:../booklist";
     }
 }

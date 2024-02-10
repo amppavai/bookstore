@@ -20,6 +20,8 @@ public class BookstoreApplication {
 		return (args) -> {
 			bookRepository.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "978-951-1-32821-61", 18.50));
 			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "978-951-0-4466-52", 24.90));
+			bookRepository.save(new Book(0, "Naiset", "Caroline Poistotesti", 2022, "978-951-0-4466", 21.90));
+
 		};
 	}
 }
