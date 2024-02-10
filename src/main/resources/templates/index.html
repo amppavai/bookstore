@@ -1,31 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <script src="http://localhost:8097"></script>
     <title>Bookstore Exercise</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <body>
-	<h1>Welcome to the Book Store!</h1>
-    <h2>List of our Books: </h2>
+    <h1>Welcome to the Book Store!</h1>
+    <h2>Currently on our shelf:</h2>
     <table>
         <tr>
             <th>Book Title</th>
             <th>Author</th>
-<!--             <th>ISBN</th>
-            <th>Publication Year</th> -->
+
             <th>Price</th>
         </tr>
         <tr th:each="book : ${books}">
             <td th:text="${book.title}">Book Title</td>
             <td th:text="${book.author}">Author</td>
-            <!-- <td th:text="${book.isbn}">ISBN</td>
-            <td th:text="${book.publicationYear}">Publication Year</td> -->
             <td th:text="${#numbers.formatDecimal(book.price, 1,2)}">Price</td>
         </tr>
     </table>
-	<form>
+    <br/>
+    <a href="/booklist" class="btn btn-primary">Press here for more</a>
+    <form>
 
-	</form>
+    </form>
 </body>
+
 </html>
