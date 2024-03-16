@@ -92,9 +92,17 @@ public class Book {
         this.price = price;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
-        return "Book \ntitle:" + title + ", \nauthor:" + author + ", \npublicationYear:" + publicationYear + ", \nisbn:"
-                + isbn + ", \nprice:" + price + category;
+        return "Book \ntitle: " + title + ", \nauthor: " + author + ", \npublicationYear: " + publicationYear + ", \nisbn: "
+                + isbn + ", \nprice: " + price + ", \ncategory: " + category.getName();
     }
 }

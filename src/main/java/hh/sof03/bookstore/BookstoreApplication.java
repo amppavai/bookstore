@@ -33,10 +33,10 @@ public class BookstoreApplication {
 			categoryRepository.save(category3);
 
 			log.info("Save some sample books");
-			bookRepository.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "978-951-1-32821-61", 18.55, category2));
-			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "978-951-0-4466-52", 24.99, category3));
+			bookRepository.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "97895113282161", 18.55, category2));
+			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "9789510446652", 24.99, category3));
 			bookRepository.save(new Book(0, "Vanhus ja meri", "Ernest Hemingway", 1952, "9789513180072", 18.99, category2));
-			bookRepository.save(new Book(0, "Vuonna 1984", "George Orwell", 1949, "9789510404478", 11.25, category3));
+			bookRepository.save(new Book(0, "Vuonna 1984", "George Orwell", 1949, "9789510404478", 11.25, category1));
 
 			log.info("Fetch all the categories");
 			for (Category category : categoryRepository.findAll()) {

@@ -4,6 +4,7 @@
 <head>
 	<title>Add book</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
@@ -30,12 +31,20 @@
 			<label for="price">Price: </label>
 			<input type="text" id="price" th:field="*{price}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-			<br />
-			<input type="submit" class="btn btn-primary" value="Add book">Add book</input>
-			<!-- mihin tämä tulee?
-				<a href="/add" class="btn btn-primary">Add Student</a>
- -->
-		</form>
+
+			<select th:field="*{category}">
+				<option th:each="category : ${categories}" th:value="${category.categoryid}" th:text="${category.name}">
+				</option>
+			</select>
+			<p>Mikäli kategoriaa ei löydy pudotusvalikosta, ole hyvä ja lisää se tästä: </p>
+
+			<label for="newCategory">New Category: </label>
+			<input type="text" id="newCategory" name="newCategory" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+	</div>
+	<br />
+	<input type="submit" class="btn btn-primary" value="Add book"></input>
+	</form>
 	</div>
 	<br />
 

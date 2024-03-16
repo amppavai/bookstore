@@ -23,15 +23,15 @@ public class CategoryController {
     }
 
     // lisää uusi kategoria
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/addcat", method = RequestMethod.GET)
     public String addCategory(Model model) {
         model.addAttribute("category", new Category());
-        model.addAttribute("category", categoryRepository.findAll());
+        //model.addAttribute("categories", categoryRepository.findAll());
         return "addcategory"; // addcategory.html
     }
 
     // uuden kateogorian tallentaminen
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/savecat", method = RequestMethod.POST)
     public String saveCateogry(Category category) {
         categoryRepository.save(category);
         return "redirect:/categorylist";

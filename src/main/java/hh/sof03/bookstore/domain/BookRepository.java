@@ -11,5 +11,5 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     List<Book> findByAuthorOrderByAuthorAsc(String author);
     @NonNull
     List<Book> findAll();
-    Optional<Book> findById(@NonNull Integer id);
+    Optional <Book> findById(@NonNull Integer id);
 }

@@ -12,10 +12,11 @@ public class Category {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-    @JsonIgnoreProperties("categories")
+    @JsonIgnoreProperties("books")
     private List<Book> books;
 
-    public Category() {}
+    public Category() {
+    }
 
     public Category(String name) {
         super();
@@ -44,10 +45,12 @@ public class Category {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+
     }
 
     @Override
     public String toString() {
-        return "\ncategory name: " + name + " (\ncategoryid:"+categoryid+")";
+        return "\ncategory name: " + name + " (\ncategoryid:" + categoryid + ")";
     }
+
 }

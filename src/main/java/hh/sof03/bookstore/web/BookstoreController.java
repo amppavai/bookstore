@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
+import hh.sof03.bookstore.domain.Category;
 import hh.sof03.bookstore.domain.CategoryRepository;
-
 
 @Controller
 public class BookstoreController {
@@ -47,28 +47,41 @@ public class BookstoreController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
-        model.addAttribute("category", categoryRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook"; // addbook.html
     }
 
     // uuden kirjan tallentaminen
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveBook(Book book) {
+    public String save(Book book, @RequestParam(required = false) String newCategory) {
+        if (newCategory != null && !newCategory.isEmpty()) {
+            Category category = new Category(newCategory);
+            categoryRepository.save(category);
+            book.setCategory(category);
+        }
         bookRepository.save(book);
-        return "redirect:/booklist";
+        return "redirect:booklist";
     }
-    //kirjan poistaminen listasta
+
+    /*
+     * @RequestMapping(value = "/save", method = RequestMethod.POST)
+     * public String saveBook(Book book) {
+     * bookRepository.save(book);
+     * return "redirect:/booklist";
+     * }
+     */
+    // kirjan poistaminen listasta
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteBook(@PathVariable("id")Integer id, Model model) {
+    public String deleteBook(@PathVariable("id") Integer id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:../booklist";
     }
 
-    //kirjan muokkaaminen
+    // kirjan muokkaaminen
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editBook(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("book", bookRepository.findById(id));
-        return "editbook"; //editbook.html
-    
+        return "editbook"; // editbook.html
+
     }
 }

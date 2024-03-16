@@ -2,24 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Add category</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Add category</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
-	<div class="container">
-		<h2>Add a new book category</h2>
+    <div class="container">
+        <h2>Add a new book category</h2>
 
-		<form th:object="${category}" th:action="@{save}" method="post"><!-- action="#" -->
-			<label for="title">Name: </label>
-			<input type="text" id="name" th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<!-- mihin tämä tulee?
-				<a href="/add" class="btn btn-primary">Add Student</a>
- -->
-		</form>
-	</div>
-	<br />
+        <form th:object="${category}" th:action="@{savecat}" action="#" method="post"><!--  -->
+            <label for="title">Name: </label>
+            <input type="text" id="name" th:field="*{name}" />
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <input type="submit" class="btn btn-primary" value="Add category"></input>
+        </form>
+    </div>
+    <br />
 
 
 </body>
