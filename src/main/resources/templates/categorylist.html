@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Category List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>List of all the Book Categories</h1>
+    <p>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Category ID-number</th>
+                <th>Category name</th>
+            </tr>
+            <tr th:each="category : ${categories}">
+                <td th:text="${category.categoryid}">ID</td>
+                <td th:text="${category.name}">Name</td>
+            </tr>
+        </tbody>
+    </table>
+    </p>
+<!--     <button class="btn btn-primary"><a href="/add">Add Book</a></button>
+    <br />
+    <br />
+    <button class="btn btn-primary"><a href="/index">Back to main page</a></button> -->
+</body>
+
+</html>

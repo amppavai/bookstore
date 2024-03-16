@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Add category</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div class="container">
+		<h2>Add a new book category</h2>
+
+		<form th:object="${category}" th:action="@{save}" method="post"><!-- action="#" -->
+			<label for="title">Name: </label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<!-- mihin tämä tulee?
+				<a href="/add" class="btn btn-primary">Add Student</a>
+ -->
+		</form>
+	</div>
+	<br />
+
+
+</body>
+
+</html>

@@ -3,14 +3,14 @@ package hh.sof03.bookstore.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+// import org.springframework.web.bind.annotation.PathVariable;
+/* import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod; */
+import org.springframework.web.bind.annotation.*;
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
+import hh.sof03.bookstore.domain.CategoryRepository;
 
 
 @Controller
@@ -18,6 +18,8 @@ public class BookstoreController {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     // etu-/aloitussivu
     @RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -45,6 +47,7 @@ public class BookstoreController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("category", categoryRepository.findAll());
         return "addbook"; // addbook.html
     }
 

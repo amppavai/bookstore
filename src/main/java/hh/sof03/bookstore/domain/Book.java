@@ -1,10 +1,8 @@
 package hh.sof03.bookstore.domain;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -18,27 +16,34 @@ public class Book {
     private String isbn;
     private double price;
 
+    @ManyToOne
+    @JsonIgnoreProperties("books")
+    @JoinColumn(name = "categoryid")
+    private Category category;
+
     public Book() {
         super();
-        this.id = 0;
+        this.id = null;
         this.title = "";
         this.author = "";
         this.publicationYear = 0;
         this.isbn = "";
         this.price = 0.0;
+        this.category = null;
     }
 
-    public Book(Integer id, String title, String author, int publicationYear, String isbn, double price) {
+    public Book(Integer id, String title, String author, int publicationYear, String isbn, double price, Category category) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
 
     // getterit ja setterit: right click > source action > generate getters/setters
-    
+
     public Integer getId() {
         return id;
     }
@@ -62,6 +67,7 @@ public class Book {
     public double getPrice() {
         return price;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -88,10 +94,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear + ", isbn=" + isbn
-                + ", price=" + price + "]";
-        // return "Book [title:" + title + ", \nauthor:" + author + ",
-        // \npublicationYear:" + publicationYear + ", \nisbn:" + isbn + ", \nprice:" +
-        // price + "]";
+        return "Book \ntitle:" + title + ", \nauthor:" + author + ", \npublicationYear:" + publicationYear + ", \nisbn:"
+                + isbn + ", \nprice:" + price + category;
     }
 }
