@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.Category;
 import hh.sof03.bookstore.domain.CategoryRepository;
 
@@ -31,6 +30,7 @@ public class CategoryController {
     }
 
     // uuden kateogorian tallentaminen
+    @SuppressWarnings("null")
     @RequestMapping(value = "/savecat", method = RequestMethod.POST)
     public String saveCateogry(Category category) {
         categoryRepository.save(category);

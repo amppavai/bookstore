@@ -25,18 +25,17 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
 			log.info("Save some categories");
-			Category category1 = new Category("Scifi");
-			categoryRepository.save(category1);
-			Category category2 = new Category("Fiction");
-			categoryRepository.save(category2);
-			Category category3 = new Category("Research");
-			categoryRepository.save(category3);
+			Category scifi = categoryRepository.save(new Category("Scifi"));
+			Category fiction = categoryRepository.save(new Category("Fiction"));
+			Category research = categoryRepository.save(new Category("Research"));
 
 			log.info("Save some sample books");
-			bookRepository.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "97895113282161", 18.55, category2));
-			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "9789510446652", 24.99, category3));
-			bookRepository.save(new Book(0, "Vanhus ja meri", "Ernest Hemingway", 1952, "9789513180072", 18.99, category2));
-			bookRepository.save(new Book(0, "Vuonna 1984", "George Orwell", 1949, "9789510404478", 11.25, category1));
+			bookRepository.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "97895113282161", 18.55, fiction));
+			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "9789510446652", 24.99, research));
+			bookRepository.save(new Book(0, "Vanhus ja meri", "Ernest Hemingway", 1952, "9789513180072", 18.99, fiction));
+			bookRepository.save(new Book(0, "Dune", "Frank Herbert", 2015, "9780340960196", 14.30, scifi));
+			bookRepository.save(new Book(0, "Vuonna 1984", "George Orwell", 1949, "9789510404478", 11.25, fiction));
+
 
 			log.info("Fetch all the categories");
 			for (Category category : categoryRepository.findAll()) {

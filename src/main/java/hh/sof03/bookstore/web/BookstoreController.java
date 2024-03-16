@@ -52,6 +52,7 @@ public class BookstoreController {
     }
 
     // uuden kirjan tallentaminen
+    @SuppressWarnings("null")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Book book, @RequestParam(required = false) String newCategory) {
         if (newCategory != null && !newCategory.isEmpty()) {
@@ -71,6 +72,7 @@ public class BookstoreController {
      * }
      */
     // kirjan poistaminen listasta
+    @SuppressWarnings("null")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Integer id, Model model) {
         bookRepository.deleteById(id);
