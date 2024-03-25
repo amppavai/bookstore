@@ -1,6 +1,7 @@
 package hh.sof03.bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 // import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +25,6 @@ public class BookstoreController {
     // etu-/aloitussivu
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String getBooks(Model model) {
-        /*
-         * List<Book> books = new ArrayList<>();
-         * 
-         * books.add(new Book(0, "Kirja 1", "Ernest Hemingway", 1929, "vc5y45uv236",
-         * 10));
-         * books.add(new Book(1, "Kirja 2", "George Orwell", 1945, "72cb64i7", 15));
-         */
         model.addAttribute("books", bookRepository.findAll());
         return "index"; // index.html
     }
@@ -64,16 +58,10 @@ public class BookstoreController {
         return "redirect:booklist";
     }
 
-    /*
-     * @RequestMapping(value = "/save", method = RequestMethod.POST)
-     * public String saveBook(Book book) {
-     * bookRepository.save(book);
-     * return "redirect:/booklist";
-     * }
-     */
     // kirjan poistaminen listasta
     @SuppressWarnings("null")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteBook(@PathVariable("id") Integer id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:../booklist";
@@ -85,5 +73,10 @@ public class BookstoreController {
         model.addAttribute("book", bookRepository.findById(id));
         return "editbook"; // editbook.html
 
+    }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
     }
 }

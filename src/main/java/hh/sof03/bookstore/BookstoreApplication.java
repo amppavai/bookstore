@@ -11,6 +11,8 @@ import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
 import hh.sof03.bookstore.domain.Category;
 import hh.sof03.bookstore.domain.CategoryRepository;
+import hh.sof03.bookstore.domain.User;
+import hh.sof03.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -22,7 +24,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 			log.info("Save some categories");
 			Category scifi = categoryRepository.save(new Category("Scifi"));
@@ -30,12 +32,14 @@ public class BookstoreApplication {
 			Category research = categoryRepository.save(new Category("Research"));
 
 			log.info("Save some sample books");
-			bookRepository.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "97895113282161", 18.55, fiction));
-			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "9789510446652", 24.99, research));
-			bookRepository.save(new Book(0, "Vanhus ja meri", "Ernest Hemingway", 1952, "9789513180072", 18.99, fiction));
+			bookRepository
+					.save(new Book(0, "Salamurhaajan oppipoika", "Robin Hobb", 1996, "97895113282161", 18.55, fiction));
+			bookRepository.save(new Book(0, "Näkymättömät naiset", "Caroline Criado Perez", 2020, "9789510446652",
+					24.99, research));
+			bookRepository
+					.save(new Book(0, "Vanhus ja meri", "Ernest Hemingway", 1952, "9789513180072", 18.99, fiction));
 			bookRepository.save(new Book(0, "Dune", "Frank Herbert", 2015, "9780340960196", 14.30, scifi));
 			bookRepository.save(new Book(0, "Vuonna 1984", "George Orwell", 1949, "9789510404478", 11.25, fiction));
-
 
 			log.info("Fetch all the categories");
 			for (Category category : categoryRepository.findAll()) {
@@ -46,6 +50,12 @@ public class BookstoreApplication {
 			for (Book book : bookRepository.findAll()) {
 				log.info(book.toString());
 			}
+
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
 		};
-	}
+
+	};
 }
