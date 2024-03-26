@@ -8,11 +8,9 @@
 </head>
 
 <body>
-	<!-- div class ="container"-->
 	<div class="col-md-4">
 		<h1>Booklist</h1>
 	</div>
-	<p>
 	<div class="col-md-4">
 		<h3 th:inline="text">Welcome!</h3>
 	</div>
@@ -29,6 +27,8 @@
 				<th>Publishing year</th>
 				<th>ISBN</th>
 				<th>Category</th>
+				<th></th>
+				<th></th>
 				<th sec:authorize="hasRole('ADMIN')"></th>
 			</tr>
 			<tr th:each="book : ${books}">
@@ -37,7 +37,7 @@
 				<td th:text="${book.publicationYear}">publicationYear</td>
 				<td th:text="${book.isbn}">isbn</td>
 				<td th:text="${book.category.name}">category</td>
-				<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger"
+				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger"
 						th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
 				<td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
 			</tr>

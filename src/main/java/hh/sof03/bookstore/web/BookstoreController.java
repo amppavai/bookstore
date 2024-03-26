@@ -61,7 +61,7 @@ public class BookstoreController {
     // kirjan poistaminen listasta
     @SuppressWarnings("null")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteBook(@PathVariable("id") Integer id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:../booklist";
