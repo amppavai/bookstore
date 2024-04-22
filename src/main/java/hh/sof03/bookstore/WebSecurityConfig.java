@@ -23,7 +23,7 @@ public class WebSecurityConfig {
 
                 http
                                 .authorizeHttpRequests(authorize -> authorize
-                                                .requestMatchers("/", "/booklist").permitAll()
+                                                .requestMatchers("/", "/index").permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(formlogin -> formlogin
                                                 //.loginPage("/login")
@@ -39,19 +39,4 @@ public class WebSecurityConfig {
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
                 auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
         }
-
-        /*
-         * @Bean
-         * public UserDetailsService userDetailsService() {
-         * BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-         * UserDetails user = User.builder()
-         * .username("user")
-         * .password(encoder.encode("password"))
-         * .roles("USER")
-         * .build();
-         * List<UserDetails> users = new ArrayList<UserDetails>();
-         * users.add(user);
-         * return new InMemoryUserDetailsManager(users);
-         * }
-         */
 }

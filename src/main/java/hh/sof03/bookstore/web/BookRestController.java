@@ -40,29 +40,3 @@ public class BookRestController {
         }
     }
 }
-
-/*
- * (sain viimeiselle return-riville jatkuvasti virheilmoituksen,
- * kun koodini näytti tältä:
- * 
- * @RequestMapping(value="/books", method = RequestMethod.POST)
- * public @ResponseBody Book addNewBook(@RequestBody Book book) {
- * return bookRepository.save(book);
- * })
- * 
- * Tekoälyn mielipide ja perustelut virheelle:
- * 
- * "Tässä tapauksessa, vaikka oletetaan, että book-olio ei ole null,
- * on mahdollista, että jostain syystä null-olio lähetetään
- * addNewBook-metodille.
- * Tämä voisi johtaa NullPointerException-virheeseen, kun yritetään kutsua
- * save-metodia null-oliolla.
- * Tästä syystä on suositeltavaa lisätä null-tarkistus ennen save-metodin
- * kutsumista,
- * kuten aiemmin ehdotettiin. Tämä varmistaa, että save-metodia ei koskaan
- * kutsuta null-oliolla,
- * mikä auttaa välttämään NullPointerException-virheet.
- * 
- * Tämä ei ole pakollista, mutta se on hyvä ohjelmointikäytäntö,
- * joka auttaa tekemään koodista vakaampaa ja virheidenkestävämpää.""
- */
